@@ -1,0 +1,9 @@
+{
+  "name": "microscope",
+  "version": "0.0.0",
+  "description": "Too much information",
+  "main": "index.coffee",
+  "author": "Jeff Long",
+  "license": "MIT",
+  "dependencies": {}
+}
