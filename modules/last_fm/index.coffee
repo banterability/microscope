@@ -1,4 +1,5 @@
 request = require 'request'
+{partition} = require 'underscore'
 
 getDateRangeForDay = (date = new Date()) ->
   year = date.getFullYear()
@@ -30,7 +31,23 @@ getTracks = (options, cb) ->
       'User-Agent': 'datadash dev 0.0.1'
 
   request requestOptions, (err, res, body) ->
-    cb err, body
+    cb err, presentTracks body
+
+presentTracks = (response) ->
+  return {nowPlaying: [], played: []} unless response.recenttracks.track?
+
+  [nowPlayingTracks, playedTracks] = partition response.recenttracks.track, (track) -> track['@attr']?.nowplaying is 'true'
+
+  nowPlaying = nowPlayingTracks.map (track) -> presentTrack track
+  played = playedTracks.map (track) -> presentTrack track
+
+  {nowPlaying, played}
+
+presentTrack = (track) ->
+  title: track.name
+  artist: track.artist["#text"]
+  album: track.album["#text"]
+  images: track.image
 
 module.exports =
   fetch: getTracks
