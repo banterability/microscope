@@ -5,6 +5,10 @@
     },
     "googleMaps": {
       "apiKey": "GOOGLE-MAPS-V3-API-KEY"
+    },
+    "last.fm": {
+      "apiKey": "LAST-FM-API-KEY",
+      "apiSecret": "LAST-FM-API-SECRET"
     }
   }
 }
