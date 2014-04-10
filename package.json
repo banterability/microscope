@@ -5,5 +5,7 @@
   "main": "index.coffee",
   "author": "Jeff Long",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "request": "~2.34.0"
+  }
 }

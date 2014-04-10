@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "forecast": {
+      "apiKey": "FORECAST.IO-API-KEY"
+    }
+  }
+}
