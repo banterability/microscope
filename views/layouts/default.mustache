@@ -3,9 +3,25 @@
     <title>Microscope</title>
     <style>
       body{font-family:'Avenir'; -webkit-transition: background-color 1s ease-out, color 1s ease-out;}
+      .night {background-color: rgb(4, 32, 41); color: rgba(255, 255, 255, 0.9)}
+      .dawn {background-color: rgb(250, 234, 182); color: rgba(0, 0, 0, 0.8);}
+      .day {background-color: rgb(243, 241, 234); color: rgba(0, 0, 0, 0.8);}
+      .dusk {background-color: rgb(122, 145, 187); color: rgba(255, 255, 255, 0.9)}
     </style>
+    <script>
+    function changeTimeOfDay(className){
+      document.body.className = "";
+      document.body.classList.add(className);
+    }
+    </script>
   </head>
-  <body>
+  <body class="{{timeOfDay}}">
     {{{yield}}}
+    <hr>
+    <code>debug:</code>
+    <button onclick="changeTimeOfDay('dawn')">dawn</button>
+    <button onclick="changeTimeOfDay('day')">day</button>
+    <button onclick="changeTimeOfDay('dusk')">dusk</button>
+    <button onclick="changeTimeOfDay('night')">night</button>
   </body>
 </html>
