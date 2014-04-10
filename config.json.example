@@ -2,6 +2,9 @@
   "modules": {
     "forecast": {
       "apiKey": "FORECAST.IO-API-KEY"
+    },
+    "googleMaps": {
+      "apiKey": "GOOGLE-MAPS-V3-API-KEY"
     }
   }
 }
