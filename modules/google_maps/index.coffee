@@ -1,6 +1,7 @@
 request = require 'request'
 {find, include} = require 'underscore'
 
+
 getLocation = (options, cb) ->
   {lat, lng, config} = options
 

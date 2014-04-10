@@ -1,5 +1,8 @@
 request = require 'request'
 
+{timeFromNow} = require './helpers'
+
+
 BASE_URL = "https://api.forecast.io/forecast"
 
 buildUrl = (options) ->
@@ -38,10 +41,17 @@ presentForecast = (response) ->
     when dusk <= now then 'night'
     else throw new Error 'missed edge case!'
 
-  {timeOfDay: currentLightConditions, temperature: currentTemp, conditions: currentCondtions, sunsetTime: sunset}
+  {
+    timeOfDay: currentLightConditions,
+    temperature: currentTemp,
+    conditions: currentCondtions,
+    sunsetTime: sunset
+    sunsetTimeString: timeFromNow(sunset)
+  }
 
 _epochToNativeDate = (unixTimestamp) ->
   new Date(unixTimestamp * 1000)
+
 
 module.exports =
   fetch: getForecast

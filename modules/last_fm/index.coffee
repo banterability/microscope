@@ -1,15 +1,8 @@
 request = require 'request'
 {partition} = require 'underscore'
 
-getDateRangeForDay = (date = new Date()) ->
-  year = date.getFullYear()
-  month = date.getMonth()
-  day = date.getDate()
+{getDateRangeForDay} = require './helpers'
 
-  start = +(new Date(year, month, day)) / 1000
-  end = +(new Date(year, month, day, 23, 59, 59)) / 1000
-
-  [start, end]
 
 getTracks = (options, cb) ->
   {user, date, config} = options
@@ -43,13 +36,16 @@ presentTracks = (response) ->
   nowPlaying = nowPlayingTracks.map (track) -> presentTrack track
   played = playedTracks.map (track) -> presentTrack track
 
-  {nowPlaying, played}
+  nowPlayingMessage = if nowPlaying?[0] then "<em>#{nowPlaying[0].title}</em> by #{nowPlaying[0].artist}" else 'nothing'
+
+  {nowPlaying, played, nowPlayingMessage}
 
 presentTrack = (track) ->
   title: track.name
   artist: track.artist["#text"]
   album: track.album["#text"]
   images: track.image
+
 
 module.exports =
   fetch: getTracks
