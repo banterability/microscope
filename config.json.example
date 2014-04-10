@@ -8,7 +8,12 @@
     },
     "last.fm": {
       "apiKey": "LAST-FM-API-KEY",
-      "apiSecret": "LAST-FM-API-SECRET"
+      "apiSecret": "LAST-FM-API-SECRET",
+      "user": "username"
     }
-  }
+  },
+  "location": {
+    "lat": 41.947854,
+    "lng": -87.655883
+  },
 }

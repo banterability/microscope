@@ -14,6 +14,8 @@ getDateRangeForDay = (date = new Date()) ->
 getTracks = (options, cb) ->
   {user, date, config} = options
 
+  user = user || config.modules['last.fm'].user
+
   [startTs, endTs] = getDateRangeForDay date
 
   requestOptions =

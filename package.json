@@ -6,6 +6,7 @@
   "author": "Jeff Long",
   "license": "MIT",
   "dependencies": {
+    "async": "~0.6.1",
     "express": "~3.5.1",
     "hogan-express": "~0.5.2",
     "request": "~2.34.0",
