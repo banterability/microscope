@@ -7,7 +7,7 @@ request = require 'request'
 getTracks = (options, cb) ->
   {user, date, config} = options
 
-  user = user || config.modules['last.fm'].user
+  user = user || config.modules.lastFm.user
 
   [startTs, endTs] = getDateRangeForDay date
 
@@ -16,7 +16,7 @@ getTracks = (options, cb) ->
     qs:
       method: 'user.getRecentTracks'
       user: user
-      api_key: config.modules['last.fm'].apiKey
+      api_key: config.modules.lastFm.apiKey
       format: 'json'
       from: startTs
       to: endTs
@@ -26,10 +26,11 @@ getTracks = (options, cb) ->
       'User-Agent': 'datadash dev 0.0.1'
 
   request requestOptions, (err, res, body) ->
+    console.log body
     cb err, presentTracks body
 
 presentTracks = (response) ->
-  return {nowPlaying: [], played: []} unless response.recenttracks.track?
+  return {nowPlaying: 'nothing', played: []} unless response.recenttracks.track?
 
   [nowPlayingTracks, playedTracks] = partition response.recenttracks.track, (track) -> track['@attr']?.nowplaying is 'true'
 
@@ -37,8 +38,9 @@ presentTracks = (response) ->
   played = playedTracks.map (track) -> presentTrack track
 
   nowPlayingMessage = if nowPlaying?[0] then "<em>#{nowPlaying[0].title}</em> by #{nowPlaying[0].artist}" else 'nothing'
+  console.log 'message', nowPlayingMessage
 
-  {nowPlaying, played, nowPlayingMessage}
+  {played, nowPlaying: nowPlayingMessage}
 
 presentTrack = (track) ->
   title: track.name

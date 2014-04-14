@@ -6,7 +6,7 @@
     "googleMaps": {
       "apiKey": "GOOGLE-MAPS-V3-API-KEY"
     },
-    "last.fm": {
+    "lastFm": {
       "apiKey": "LAST-FM-API-KEY",
       "apiSecret": "LAST-FM-API-SECRET",
       "user": "username"

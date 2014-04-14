@@ -3,8 +3,8 @@ fs = require 'fs'
 async = require 'async'
 
 forecast = require './modules/forecast'
-googleMaps = require './modules/google_maps'
-lastFm = require './modules/last_fm'
+googleMaps = require './modules/googleMaps'
+lastFm = require './modules/lastFm'
 
 config = JSON.parse(fs.readFileSync 'config.json', 'utf-8')
 
