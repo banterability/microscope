@@ -29,7 +29,7 @@ app.get '/', (req, res) ->
         sunset: results.weather.sunsetTimeString.toLowerCase()
       music:
         playCount: results.music.played.length
-        nowPlaying: results.music.nowPlayingMessage
+        nowPlaying: results.music.nowPlaying
 
     res.render 'home', context
 
