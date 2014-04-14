@@ -13,3 +13,4 @@ A `config.json` in the root of the project directory holds all the necessary API
 | `modules.lastFm.apiSecret` | The associated secret for the above account, which can be found [on your API accounts page](http://www.last.fm/api/accounts). |
 | `modules.lastFm.user` | The username you'd like to retrieve tracks from. |
 | `location.lat` | The latitude that should be used for location-aware modules (Currently just Forecast). |
+| `location.lng` | The longitude that should be used for location-aware modules. |
