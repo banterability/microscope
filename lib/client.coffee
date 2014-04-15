@@ -15,8 +15,6 @@ class ApiClient
       url: @buildUrl()
     }
 
-    console.log '[ApiClient] Fetching with options', requestOptions
-
     request requestOptions, (err, res, body) ->
       cb err, body
 

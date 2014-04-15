@@ -2,7 +2,7 @@ express = require 'express'
 fs = require 'fs'
 async = require 'async'
 
-forecast = require './modules/forecast'
+{getForecast} = require './modules/forecast'
 googleMaps = require './modules/googleMaps'
 lastFm = require './modules/lastFm'
 
@@ -14,11 +14,9 @@ app.set 'view engine', 'mustache'
 app.set 'layout', 'layouts/default'
 # app.set 'partials', header: 'partials/_header'
 
-location = config.location
-
 app.get '/', (req, res) ->
   async.parallel {
-    weather: (cb) -> forecast.fetch {lat: location.lat, lng: location.lng, config}, cb
+    weather: (cb) -> getForecast config, cb
     music: (cb) -> lastFm.fetch {config}, cb
   }, (err, results) ->
     context =

@@ -1,23 +1,13 @@
-request = require 'request'
-
 {timeFromNow} = require './helpers'
+ForecastClient = require './client'
 
+getForecast = (config, cb) ->
+  {lat, lng} = config.location
+  apiKey = config.modules.forecast.apiKey
 
-BASE_URL = "https://api.forecast.io/forecast"
+  Forecast = new ForecastClient {lat, lng, apiKey}
 
-buildUrl = (options) ->
-  "#{BASE_URL}/#{options.apiKey}/#{options.lat},#{options.lng}"
-
-getForecast = (options, cb) ->
-  {lat, lng, config} = options
-
-  requestOptions =
-    url: buildUrl {lat, lng, apiKey: config.modules.forecast.apiKey}
-    qs:
-      exclude: 'minutely,hourly,alerts,flags'
-    json: true
-
-  request requestOptions, (err, res, body) ->
+  Forecast.fetch {}, (err, body) ->
     cb err, presentForecast body
 
 presentForecast = (response) ->
@@ -53,5 +43,4 @@ _epochToNativeDate = (unixTimestamp) ->
   new Date(unixTimestamp * 1000)
 
 
-module.exports =
-  fetch: getForecast
+module.exports = {getForecast}
