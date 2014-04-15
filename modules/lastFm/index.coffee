@@ -26,7 +26,6 @@ getTracks = (options, cb) ->
       'User-Agent': 'datadash dev 0.0.1'
 
   request requestOptions, (err, res, body) ->
-    console.log body
     cb err, presentTracks body
 
 presentTracks = (response) ->
@@ -38,7 +37,6 @@ presentTracks = (response) ->
   played = playedTracks.map (track) -> presentTrack track
 
   nowPlayingMessage = if nowPlaying?[0] then "<em>#{nowPlaying[0].title}</em> by #{nowPlaying[0].artist}" else 'nothing'
-  console.log 'message', nowPlayingMessage
 
   {played, nowPlaying: nowPlayingMessage}
 
